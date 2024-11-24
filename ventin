@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory and Sales Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Inventory and Sales Management</h1>
+    </header>
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#sales">Sales</a>
+    </nav>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to your inventory and sales management platform!</p>
+        </section>
+        <section id="inventory">
+            <h2>Inventory</h2>
+            <form id="inventory-form">
+                <input type="text" id="product-name" placeholder="Product Name" required>
+                <input type="number" id="product-quantity" placeholder="Quantity" required>
+                <button type="submit">Add Product</button>
+            </form>
+            <ul id="inventory-list"></ul>
+        </section>
+        <section id="sales">
+            <h2>Sales</h2>
+            <form id="sales-form">
+                <input type="text" id="sale-product" placeholder="Product Sold" required>
+                <input type="number" id="sale-quantity" placeholder="Quantity" required>
+                <button type="submit">Register Sale</button>
+            </form>
+            <ul id="sales-list"></ul>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    background: #444;
+    padding: 10px 0;
+}
+nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+main {
+    padding: 20px;
+}
+section {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+form input, form button {
+    padding: 10px;
+    margin: 5px 0;
+}
+form button {
+    background: #5cb85c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background: #4cae4c;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const inventoryForm = document.getElementById('inventory-form');
+    const inventoryList = document.getElementById('inventory-list');
+    const salesForm = document.getElementById('sales-form');
+    const salesList = document.getElementById('sales-list');
+
+    inventoryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('product-name').value;
+        const quantity = document.getElementById('product-quantity').value;
+
+        const li = document.createElement('li');
+        li.textContent = `${name} - Quantity: ${quantity}`;
+        inventoryList.appendChild(li);
+
+        inventoryForm.reset();
+    });
+
+    salesForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const product = document.getElementById('sale-product').value;
+        const quantity = document.getElementById('sale-quantity').value;
+
+        const li = document.createElement('li');
+        li.textContent = `${product} - Sold: ${quantity}`;
+        salesList.appendChild(li);
+
+        salesForm.reset();
+    });
+});
